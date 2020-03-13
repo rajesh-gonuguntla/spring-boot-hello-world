@@ -1,10 +1,3 @@
-node('maven-pod') {
-    stage('Checkout') {
-        checkout scm
-    }
-    stage('Build'){
-        container('maven-container') {
-           sh 'echo helloworld'
-        }
-    }
+podTemplate(containers: [containerTemplate(args: 'cat', command: '/bin/sh -c', image: '3.6.3-jdk-11-openj9', livenessProbe: containerLivenessProbe(execArgs: '', failureThreshold: 1, initialDelaySeconds: 600, periodSeconds: 5, successThreshold: 2, timeoutSeconds: 60), name: 'maven', resourceLimitCpu: '', resourceLimitMemory: '', resourceRequestCpu: '', resourceRequestMemory: '', ttyEnabled: true, workingDir: '/home/jenkins/agent')], inheritFrom: '', instanceCap: 0, label: 'maven', name: 'maven', namespace: 'tools', nodeSelector: '', podRetention: onFailure(), serviceAccount: 'default', supplementalGroups: '', workspaceVolume: dynamicPVC(accessModes: 'ReadWriteOnce', requestsSize: '', storageClassName: ''), yaml: '') {
+    // some block
 }
