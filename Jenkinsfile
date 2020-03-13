@@ -4,7 +4,7 @@ node('maven-pod') {
     }
     stage('Build'){
         container('maven-container') {
-           mvn clean install -DskipTests
+           sh 'echo helloworld'
         }
     }
 }
