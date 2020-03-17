@@ -2,7 +2,7 @@ podTemplate(
     name: 'default',
     label: 'default',
     containers: [
-        containerTemplate(name: 'maven', image: 'maven:3.6.3-amazoncorretto-8', args: 'which mvn', command: '/bin/sh -c')
+        containerTemplate(name: 'maven', image: 'maven:3.6.3-amazoncorretto-8', args: 'cat', command: '/bin/sh -c')
     ],
     {
         //node = the pod label
