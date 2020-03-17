@@ -9,10 +9,10 @@ podTemplate(
         node('default'){
             //container = the container label
             stage('Build'){
-                container('maven'){
+                //container('maven'){
                     sh 'cd /home/jenkins/workspace/spring-boot-hello-world_master';
                     sh 'mvn clean install -DskipTests';
-                }
+               // }
             }
         }
     })
