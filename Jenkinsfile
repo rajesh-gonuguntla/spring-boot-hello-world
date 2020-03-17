@@ -1,9 +1,6 @@
 podTemplate(
     name: 'default',
-    label: 'default',
-    containers: [
-        containerTemplate(name: 'maven', image: 'maven:3.6.3-amazoncorretto-8')
-    ],
+    label: 'default'
     {
         //node = the pod label
         node('default'){
