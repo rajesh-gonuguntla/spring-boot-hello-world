@@ -11,6 +11,7 @@ podTemplate(
             //container = the container label
             stage('Build'){
                 container('maven'){
+                    sh ' echo in container maven'
                     sh 'pwd'
                    
                 }
