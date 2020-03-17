@@ -11,7 +11,8 @@ podTemplate(
             //container = the container label
             stage('Build'){
                 //container('maven'){
-                    sh 'mvn -v' 
+                    sh 'pwd'
+                    sh 'ls --all'
                // }
             }
         }
