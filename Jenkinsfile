@@ -8,7 +8,7 @@ podTemplate(
     {
         //node = the pod label
         node('default'){
-            //container = the container label
+            checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/rajesh-gonuguntla/spring-boot-hello-world.git']]])
             stage('Build'){
                 container('maven'){
                     sh ' echo in container maven'
