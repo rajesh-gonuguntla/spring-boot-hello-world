@@ -13,6 +13,7 @@ podTemplate(
                 container('maven'){
                     sh ' echo in container maven'
                     sh 'pwd'
+                    sh 'mvn clean install -DskipTests=true'
                    
                 }
             }
