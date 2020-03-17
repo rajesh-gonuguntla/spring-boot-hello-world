@@ -1,12 +1,15 @@
-
-     node('maven') {
-    stage('Checkout') {
-        checkout scm
+pipeline {
+    agent {
+        docker {
+            image 'maven:3-alpine' 
+            args '-v /root/.m2:/root/.m2' 
+        }
     }
-    stage('Build'){
-        container('maven') {
-           sh 'which maven'
+    stages {
+        stage('Build') { 
+            steps {
+                sh 'mvn -B -DskipTests clean package' 
+            }
         }
     }
 }
-
