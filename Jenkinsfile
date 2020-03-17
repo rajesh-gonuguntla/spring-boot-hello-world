@@ -4,7 +4,7 @@ podTemplate(
     containers:[
         containerTemplate(name: 'docker', image:'trion/jenkins-docker-client'),
         containerTemplate(name: 'maven', image:'maven:3.6.3-amazoncorretto-8'),
-    ]
+    ],
     {
         //node = the pod label
         node('opargo-build-agent'){
