@@ -10,9 +10,7 @@ podTemplate(
         node('opargo-build-agent'){
             //container = the container label
             stage('Build'){
-                container('maven'){
-                    sh 'mvn -v'
-                }
+                sh ' echo hello world '
             }
         }
     })
