@@ -1,10 +1,17 @@
-node('default') {
-    stage('Checkout') {
-        checkout scm
-    }
-    stage('Build'){
-        container('maven') {
-            sh 'echo which mvn'
+podTemplate(
+    name: 'default',
+    label: 'default',
+    containers: [
+        containerTemplate(name: 'maven', image: 'maven:3.6.3-amazoncorretto-8', args: 'which mvn', command: '/bin/sh -c')
+    ],
+    {
+        //node = the pod label
+        node('default'){
+            //container = the container label
+            stage('Build'){
+                container('maven'){
+                    sh 'mvn clean install -DskipTests'
+                }
+            }
         }
-    }
-}
+    })
