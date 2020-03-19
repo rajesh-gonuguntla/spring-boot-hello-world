@@ -2,7 +2,6 @@ podTemplate(
     name: 'default',
     label: 'default',
     containers:[
-        // containerTemplate(name: 'docker', image:'trion/jenkins-docker-client'),
         containerTemplate(name: 'maven',  image:'maven:3.6.3-amazoncorretto-8', args: 'cat', ttyEnabled: true, command: '/bin/sh -c'),
     ],
     {
@@ -14,18 +13,14 @@ podTemplate(
         
         node('default'){
             stage ('Listing Branches') {
-                echo "Initializing workflow"
-                //checkout code
+                echo "Listing Branches .."
                 echo GITHUB_PROJECT
                 git url: GITHUB_PROJECT, credentialsId: GITHUB_CREDENTIALS_ID
                 sh 'git branch -r | awk \'{print $1}\' ORS=\'\\n\' >branches.txt'
                 sh "cut -d '/' -f 2 branches.txt > branch.txt"
-                sh "cat ./branch.txt"
-                //sh “sed s’/origin”\’///g branches.txt > branch.tx”
-                //sed ‘s/$/from S0 to S1/’
             }
             stage('get build branch Parameter User Input') {
-                sh 'echo hello world'
+                sh 'Please select the branch to build and compile ..'
                 liste = readFile 'branch.txt'
                 echo "please click on the link here to chose the branch to build"
                 env.BRANCH_SCOPE = input message: 'Please choose the branch to build ', ok: 'Validate!',
@@ -39,11 +34,6 @@ podTemplate(
 
                 sh "ls -lat"
                 }
-            
-            //stage('checkout'){
-            //checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/rajesh-gonuguntla/spring-boot-hello-world.git']]])
-            
-           // }
 
             stage('Build'){
                 container('maven'){
