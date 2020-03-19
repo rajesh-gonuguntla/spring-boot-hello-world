@@ -18,7 +18,7 @@ podTemplate(
                 sh "cut -d '/' -f 2 branches.txt > branch.txt"
             }
             stage('Select A Branch') {
-                sh 'Please select the branch to build and compile ..'
+                //sh 'echo Please select the branch to build and compile ..'
                 liste = readFile 'branch.txt'
                 sh "echo Click on the Link  to Select a Branch"
                 env.BRANCH_SCOPE = input message: 'Please choose the branch to build ', ok: 'Validate!',
