@@ -56,7 +56,9 @@ podTemplate(
                 } // Container ends here
             } // Stage ends here
         } // Stages ends here
-        post {
+
+    }
+            post {
         always {
             echo 'One way or another, I have finished'
             deleteDir() /* clean up our workspace */
@@ -73,5 +75,4 @@ podTemplate(
         changed {
             echo 'Things were different before...'
         }
-    }
     })
