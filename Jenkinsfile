@@ -24,7 +24,7 @@ podTemplate(
                 //sed ‘s/$/from S0 to S1/’
             }
             stage('get build branch Parameter User Input') {
-
+                sh 'echo hello world'
                 liste = readFile 'branch.txt'
                 echo "please click on the link here to chose the branch to build"
                 env.BRANCH_SCOPE = input message: 'Please choose the branch to build ', ok: 'Validate!',
