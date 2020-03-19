@@ -14,7 +14,7 @@ podTemplate(
         
         node('default'){
             stage ('Listing Branches') {
-                echo “Initializing workflow”
+                echo "Initializing workflow"
                 //checkout code
                 echo GITHUB_PROJECT
                 git url: GITHUB_PROJECT, credentialsId: GITHUB_CREDENTIALS_ID
@@ -31,6 +31,14 @@ podTemplate(
                 env.BRANCH_SCOPE = input message: 'Please choose the branch to build ', ok: 'Validate!',
                 parameters: [choice(name: 'BRANCH_NAME', choices: "${liste}", description: 'Branch to build?')]
             }
+            stage('Checkout external proj') {
+                echo "${env.BRANCH_SCOPE}"
+                git branch: "${env.BRANCH_SCOPE}",
+                credentialsId: GITHUB_CREDENTIALS_ID,
+                url: GITHUB_PROJECT
+
+                sh "ls -lat"
+                }
             
             //stage('checkout'){
             //checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/rajesh-gonuguntla/spring-boot-hello-world.git']]])
