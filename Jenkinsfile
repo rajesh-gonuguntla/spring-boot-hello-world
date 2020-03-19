@@ -20,6 +20,7 @@ podTemplate(
                 git url: GITHUB_PROJECT, credentialsId: GITHUB_CREDENTIALS_ID
                 sh 'git branch -r | awk \'{print $1}\' ORS=\'\\n\' >branches.txt'
                 sh "cut -d '/' -f 2 branches.txt > branch.txt"
+                sh "cat ./branch.txt"
                 //sh “sed s’/origin”\’///g branches.txt > branch.tx”
                 //sed ‘s/$/from S0 to S1/’
             }
