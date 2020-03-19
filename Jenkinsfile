@@ -35,44 +35,16 @@ podTemplate(
              }
             
             stage('Test') {
-                //steps {
                 container('maven'){
                   sh 'mvn test'
                 }
-                //}
-               // post {
-                //  always {
-                 //   junit 'target/surefire-reports/*.xml'
-                  //}
-                //}
-              }
+            }
 
             stage('Build'){
                 container('maven'){
-  
                     sh 'pwd'
                     sh 'mvn clean install -DskipTests=true'
-                   
-                } // Container ends here
-            } // Stage ends here
-        } // Stages ends here
-
-    }
-            post {
-        always {
-            echo 'One way or another, I have finished'
-            deleteDir() /* clean up our workspace */
-        }
-        success {
-            echo 'I succeeeded!'
-        }
-        unstable {
-            echo 'I am unstable :/'
-        }
-        failure {
-            echo 'I failed :('
-        }
-        changed {
-            echo 'Things were different before...'
-        }
+                } 
+            } 
+        } // Node
     })
