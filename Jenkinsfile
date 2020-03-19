@@ -20,7 +20,7 @@ podTemplate(
             stage('Select A Branch') {
                 sh 'Please select the branch to build and compile ..'
                 liste = readFile 'branch.txt'
-                echo "Click on the Link  to Select a Branch"
+                sh "echo Click on the Link  to Select a Branch"
                 env.BRANCH_SCOPE = input message: 'Please choose the branch to build ', ok: 'Validate!',
                 parameters: [choice(name: 'BRANCH_NAME', choices: "${liste}", description: 'Branch to build?')]
             }
