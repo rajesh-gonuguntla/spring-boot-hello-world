@@ -36,7 +36,9 @@ podTemplate(
             
             stage('Test') {
                 //steps {
+                container('maven'){
                   sh 'mvn test'
+                }
                 //}
                // post {
                 //  always {
