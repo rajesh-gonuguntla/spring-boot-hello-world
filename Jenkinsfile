@@ -26,18 +26,19 @@ podTemplate(
                 env.BRANCH_SCOPE = input message: 'Please choose the branch to build ', ok: 'Validate!',
                 parameters: [choice(name: 'BRANCH_NAME', choices: "${liste}", description: 'Branch to build?')]
             }
-            stage('Checkout external proj') {
+            stage('Switching to the Selected Branch') {
                 echo "${env.BRANCH_SCOPE}"
                 git branch: "${env.BRANCH_SCOPE}",
                 credentialsId: GITHUB_CREDENTIALS_ID,
                 url: GITHUB_PROJECT
-
+                sh "echo Current Branch is ";
+                sh "echo git branch"
                 sh "ls -lat"
                 }
 
             stage('Build'){
                 container('maven'){
-                    sh ' echo in container maven'
+  
                     sh 'pwd'
                     sh 'mvn clean install -DskipTests=true'
                    
