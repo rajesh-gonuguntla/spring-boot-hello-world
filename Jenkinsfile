@@ -14,6 +14,7 @@ podTemplate(
         node('default'){
             
             stage ('Locating Branches') {
+                echo "${APPLICATION_NAME}"
                 git url: GITHUB_PROJECT, credentialsId: GITHUB_CREDENTIALS_ID
                 sh 'git branch -r | awk \'{print $1}\' ORS=\'\\n\' >branches.txt'
                 sh "cut -d '/' -f 2 branches.txt > branch.txt"
@@ -51,7 +52,7 @@ podTemplate(
             
             stage('Build Docker Image'){
                 container('docker'){
-                    sh 'docker build -t ${APPLICATION_NAME} .'
+                    sh "docker build -t ${APPLICATION_NAME} ."
                 } 
             } 
         } 
