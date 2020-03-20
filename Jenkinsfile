@@ -5,10 +5,6 @@ podTemplate(
         containerTemplate(name: 'docker', image:'benhall/dind-jenkins-agent:v2'),
         containerTemplate(name: 'maven',  image:'maven:3.6.3-amazoncorretto-8', args: 'cat', ttyEnabled: true, command: '/bin/sh -c'),
     ],
-    volumes: [
-        hostPathVolume(mountPath: '/var/run/docker.sock',
-        hostPath: '/var/run/docker.sock',
-    ],
     {
         GITHUB_PROJECT="https://github.com/rajesh-gonuguntla/spring-boot-hello-world.git"
         GITHUB_CREDENTIALS_ID = 'github' //maps to a Jenkins Credentials Vault ID
