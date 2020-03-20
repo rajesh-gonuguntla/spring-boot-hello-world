@@ -8,7 +8,7 @@ podTemplate(
     {
         GITHUB_PROJECT="https://github.com/rajesh-gonuguntla/spring-boot-hello-world.git"
         GITHUB_CREDENTIALS_ID = 'github' //maps to a Jenkins Credentials Vault ID
-        APPLICATION_NAME = "Sample-App"
+        APPLICATION_NAME = "sample-app"
         GITHUB_BRANCH = 'master'
         
         node('default'){
