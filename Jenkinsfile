@@ -2,6 +2,7 @@ podTemplate(
     name: 'default',
     label: 'default',
     containers:[
+        containerTemplate(name: 'docker', image:'trion/jenkins-docker-client'),
         containerTemplate(name: 'maven',  image:'maven:3.6.3-amazoncorretto-8', args: 'cat', ttyEnabled: true, command: '/bin/sh -c'),
     ],
     {
@@ -46,5 +47,12 @@ podTemplate(
                     sh 'mvn clean install -DskipTests=true'
                 } 
             } 
+            
+            stage('Build Docker Image'){
+                container('docker'){
+                   docker build -t sample-app .
+                } 
+            } 
+            
         } // Node
     })
