@@ -2,7 +2,7 @@ podTemplate(
     name: 'default',
     label: 'default',
     containers:[
-        containerTemplate(name: 'docker', image:'benhall/dind-jenkins-agent:v2'),
+        // containerTemplate(name: 'docker', image:'benhall/dind-jenkins-agent:v2'),
         containerTemplate(name: 'maven',  image:'maven:3.6.3-amazoncorretto-8', args: 'cat', ttyEnabled: true, command: '/bin/sh -c'),
     ],
     {
@@ -51,9 +51,10 @@ podTemplate(
             } 
             
             stage('Build Docker Image'){
-                container('docker'){
-                    sh "docker build -t ${APPLICATION_NAME} ."
-                } 
+                docker.build("${APPLICATION_NAME")
+                //container('docker'){
+                 //   sh "docker build -t ${APPLICATION_NAME} ."
+               // } 
             } 
         } 
        
