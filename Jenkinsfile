@@ -51,7 +51,7 @@ podTemplate(
             } 
             
             stage('Build Docker Image'){
-                docker.build("${APPLICATION_NAME")
+                app = docker.build("${APPLICATION_NAME")
                 //container('docker'){
                  //   sh "docker build -t ${APPLICATION_NAME} ."
                // } 
